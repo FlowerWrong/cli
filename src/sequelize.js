@@ -52,6 +52,7 @@ const cli = yargs
   .command('init:migrations', 'Initializes migrations', init)
   .command('init:models', 'Initializes models', init)
   .command('init:seeders', 'Initializes seeders', init)
+  .command('init:graphqls', 'Initializes graphqls', init)
   .command(['migration:generate', 'migration:create'], 'Generates a new migration file', migrationGenerate)
   .command(['model:generate', 'model:create'], 'Generates a model and its migration', modelGenerate)
   .command(['seed:generate', 'seed:create'], 'Generates a new seed file', seedGenerate)

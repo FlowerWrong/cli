@@ -28,8 +28,8 @@ exports.builder =
 exports.handler = function (args) {
   ensureModelsFolder();
   ensureMigrationsFolder();
+  ensureGraphqlsFolder();
   checkModelFileExistence(args);
-
 
   try {
     helpers.model.generateFile(args);
@@ -38,6 +38,9 @@ exports.handler = function (args) {
   }
 
   helpers.migration.generateTableCreationFile(args);
+
+  helpers.graphql.generateFile(args);
+
   helpers.view.log(
     'New model was created at',
     clc.blueBright(helpers.path.getModelPath(args.name)),
@@ -46,6 +49,11 @@ exports.handler = function (args) {
   helpers.view.log(
     'New migration was created at',
     clc.blueBright(helpers.path.getMigrationPath(args.name)),
+    '.'
+  );
+  helpers.view.log(
+    'New graphql was created at',
+    clc.blueBright(helpers.path.getGraphqlPath(args.name)),
     '.'
   );
 
@@ -67,6 +75,16 @@ function ensureMigrationsFolder () {
     helpers.view.error(
       'Unable to find migrations path (' +
       helpers.path.getPath('migration') +
+      '). Did you run ' + clc.blueBright('sequelize init') + '?'
+    );
+  }
+}
+
+function ensureGraphqlsFolder () {
+  if (!helpers.path.existsSync(helpers.path.getPath('graphql'))) {
+    helpers.view.error(
+      'Unable to find graphqls path (' +
+      helpers.path.getPath('graphql') +
       '). Did you run ' + clc.blueBright('sequelize init') + '?'
     );
   }

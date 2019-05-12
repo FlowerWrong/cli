@@ -18,6 +18,7 @@ exports.handler = async function (argv) {
       await initModels(argv);
       await initMigrations(argv);
       await initSeeders(argv);
+      await initGraphqls(argv);
       break;
 
     case 'init:config':
@@ -34,6 +35,10 @@ exports.handler = async function (argv) {
 
     case 'init:seeders':
       await initSeeders(argv);
+      break;
+
+    case 'init:graphqls':
+      await initGraphqls(argv);
       break;
   }
 
@@ -61,4 +66,8 @@ function initMigrations (args) {
 
 function initSeeders (args) {
   helpers.init.createSeedersFolder(!!args.force);
+}
+
+function initGraphqls (args) {
+  helpers.init.createGraphqlsFolder(!!args.force);
 }

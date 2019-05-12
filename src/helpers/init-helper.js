@@ -47,6 +47,10 @@ const init = {
     createFolder('models', helpers.path.getModelsPath(), force);
   },
 
+  createGraphqlsFolder: force => {
+    createFolder('graphqls', helpers.path.getPath('graphql'), force);
+  },
+
   createModelsIndexFile: force => {
     const modelsPath = helpers.path.getModelsPath();
     const indexPath  = path.resolve(

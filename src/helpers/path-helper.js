@@ -73,6 +73,13 @@ module.exports = {
     );
   },
 
+  getGraphqlPath (modelName) {
+    return path.resolve(
+      this.getPath('graphql'),
+      this.addFileExtension(modelName.toLowerCase())
+    );
+  },
+
   resolve (packageName) {
     let result;
 
